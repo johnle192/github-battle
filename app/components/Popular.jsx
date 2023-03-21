@@ -22,38 +22,32 @@ LanguagesNav.propTypes = {
 }
 
 export default class Popular extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedLanguage: "All",
-      repos: null,
-      error: null,
-    }
-
-    this.updateLanguage = this.updateLanguage.bind(this);
+  state = {
+    selectedLanguage: "All",
+    repos: null,
+    error: null,
   }
+
   componentDidMount() {
-    // fetchPopularRepos
     this.updateLanguage(this.state.selectedLanguage)
   }
-  updateLanguage(selectedLanguage) {
+  updateLanguage = (selectedLanguage) => {
     this.setState({
       selectedLanguage,
       error: null
     });
 
     fetchPopularRepos(selectedLanguage)
-    .then((repos) => this.setState({
-      repos,
-      error: null,
-    })).catch((error) => {
-      console.warn("Error fetch repos: ", error);
+      .then((repos) => this.setState({
+        repos,
+        error: null,
+      })).catch((error) => {
+        console.warn("Error fetch repos: ", error);
 
-      this.setState({
-        error: "There was an error fetching the repositories",
+        this.setState({
+          error: "There was an error fetching the repositories",
+        })
       })
-    })
   }
 
   render () {

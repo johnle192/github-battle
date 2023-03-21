@@ -11,12 +11,8 @@ const styles = {
 };
 
 class Delayed extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      show: false
-    }
+  state = {
+    show: false
   }
 
   componentDidMount() {
@@ -47,12 +43,8 @@ Delayed.propTypes = {
 };
 
 export default class Loading extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      content: props.text
-    }
+  state = {
+    content: this.props.text
   }
 
   componentDidMount() {
